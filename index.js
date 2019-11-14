@@ -1,11 +1,6 @@
 $(function() {
 
-    $(".shopping-item-toggle").on("click", function() {
-        $(".shopping-item")
-            .closet("span")
-            .toggleClass("shopping-item shopping-item__checked shopping-item");
-    });
-
+    // Adding items to the list.
     $("#addItem").on("click", function(event) {
         event.preventDefault();
         let new_item = $("#shopping-list-entry").val();
@@ -21,6 +16,20 @@ $(function() {
             "</button>" +
             "</div>" +
             "</li>");
+    });
+
+    // Checking & unchecking items on the list.
+    $(".shopping-list").on("click", ".shopping-item-toggle", function(event) {
+        event.preventDefault();
+        let check = $(this).closest("li").children(".shopping-item")[0];
+        $(check).toggleClass("shopping-item__checked");
+    });
+
+    // Deleting items on the list.
+    $(".shopping-list").on("click", ".shopping-item-delete", function(event) {
+        event.preventDefault();
+        $(this)
+            .closest("li").remove("li");
     });
 
 });
